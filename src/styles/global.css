@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+}
+/*background: #422d5d;
+color: #decff1;
+font-family: 'VT323', monospace;*/
+h1,h2,h3,h4,a,p,li {
+  font-weight: normal;
+}
+
+input {
+  @apply border border-solid border-foreground border-opacity-30 rounded-md;
+  @apply bg-background text-foreground;
+  @apply px-4 py-2;
+}
