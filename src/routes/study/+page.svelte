@@ -1,5 +1,5 @@
 <script>
-    import StudyCards from "$lib/components/StudyCards.svelte";
+    import PomodoroBlocks from "$lib/components/PomodoroBlocks.svelte";
     const STUDY = "Study time";
     const REST = "Rest time";
 </script>
@@ -7,12 +7,9 @@
 <div
     class="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-500 to-green-400"
   >
-  <StudyCards title={STUDY} cardTime={25}/>
-  <StudyCards title={REST} cardTime={5}/>
-  <StudyCards title={STUDY} cardTime={25}/>
-  <StudyCards title={REST} cardTime={5}/>
-  <StudyCards title={STUDY} cardTime={25}/>
-  <StudyCards title={REST} cardTime={5}/>
+
+  <PomodoroBlocks />
+
 </div>
   
 <style>
