@@ -5,30 +5,35 @@
     const STUDY = "Study time";
     const REST = "Rest time";
 
-    const STUDY_TIME: number = 25;
-    const REST_TIME: number = 5;
+    const STUDY_TIME: number = 1;
+    const REST_TIME: number = 1;
   
-    type CardItem = { id: string; title: string; studyTime: number; restTime: number; done?: boolean }
+    type CardItem = { id: number; title: string; studyTime: number; restTime: number; done?: boolean }
   
     let newStudyCardTime = $state(0);
     let newRestCardTime = $state(0);
+    let currentId = $state(1);
+    let lastId = $state(2);
 
     let cards = $state([
       {
-        id: "1",
+        id: 1,
         title: "Pomodoro block",
         studyTime: STUDY_TIME,
         restTime: REST_TIME,
         done: false,
       },
       {
-        id: "2",
+        id: 2,
         title: "Pomodoro block",
         studyTime: STUDY_TIME,
         restTime: REST_TIME,
         done: false,
       },
-    ])
+    ]);
+
+    // Internal state variable to track which timer to start
+    let timerType = $state("study"); // Initially set to study
 
     function submit() {
       if (!newStudyCardTime && !newRestCardTime) return
@@ -51,14 +56,25 @@
     }
     
     function createId() {
-      return Math.random().toString(36).substr(2, 9)
+      lastId ++;
+      return lastId;
+    }
+
+    function changeTimerType() {
+      if (timerType === "rest") {
+        cards[currentId - 1].done = true;
+        currentId = currentId + 1;
+      }
+      timerType = timerType === "study" ? "rest" : "study";
     }
   </script>
   
   <div class="card-list">
     <ul>
       {#each cards as card (card.id)}
-        {@render CardItem(card)}
+      <div out:fly={{ x: 200, duration: 1000 }} in:fly={{ y: 1000, duration: 1000 }}>
+        {@render CardItem(card) }
+      </div>
       {/each}
     </ul>
   
@@ -71,15 +87,19 @@
   </div>
   
   {#snippet CardItem(card)}
-    <li out:fly={{ x: 200, duration: 1000 }} in:fly={{ y: 1000, duration: 1000 }}>
-      <button class:done={card.done} on:click={() => onClick(card)}>
-        {card.title} - {card.studyTime} - {card.restTime} - {card.done}
+  <div class:done={card.done}>
+    <li>
+      <button on:click={() => onClick(card)}>
+        {card.title} {card.id} - {card.done ? "Done" : "Not done"}
       </button>
     </li>
-    <div class="grid grid-cols-2 gap-4">
-      <StudyCard title={STUDY} cardTime={card.studyTime}/>
-      <StudyCard title={REST} cardTime={card.restTime}/>
+    <div class="grid grid-cols-2 gap-4 py-2">
+      <StudyCard title={STUDY} cardTime={card.studyTime} isActive={timerType === "study" && card.id === currentId}
+        on:cardDone={changeTimerType} id={card.id}/>
+      <StudyCard title={REST} cardTime={card.restTime} isActive={timerType === "rest" && card.id === currentId}
+        on:cardDone={changeTimerType} id={card.id}/>
     </div>
+  </div>
   {/snippet}
   
   {#snippet Input()}
@@ -140,9 +160,9 @@
       @apply border border-foreground border-opacity-50 border-solid rounded-md;
       @apply text-start;
     }
-  
-    li > button.done {
-      @apply line-through opacity-25;
+
+    .done {
+      @apply opacity-25;
     }
   
     .controls {

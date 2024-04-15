@@ -1,5 +1,8 @@
 <!-- reference: https://github.com/codyseibert/youtube/tree/master/svelte-stop-watch-->
 <script lang="ts">
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
 
     enum STATE {
       NEW,
@@ -15,11 +18,13 @@
 
     export let title: string;
     export let cardTime: number;
-  
+    export let isActive: boolean;
+    export let id: number;
+    
     const pad2 = (number: number) => `00${number}`.slice(-2);
   
     $: minutes = pad2((cardTime - 1) - Math.floor(elaspedTime / 1000 / 60) % 60);
-    $: seconds = pad2(59 - Math.floor(elaspedTime / 1000) % 60);
+    $: seconds = pad2(5 - Math.floor(elaspedTime / 1000) % 6); //TODO: CAMBIAR A 59
     $: formattedRemainingTime = `${minutes}:${seconds}`;
 
     const start = () => {
@@ -30,9 +35,15 @@
             const endTime = Date.now();
             elaspedTime = endTime - startTime + oldElapsedTime;
           }
+          if(formattedRemainingTime == "00:00") {
+            clearInterval(interval);
+            //changeTimerType();
+            cardState = STATE.PAUSED;
+            dispatch('cardDone'); // Emit event when timer reaches 0
+          }
         });
     };
-  
+    
     const reset = () => {
       elaspedTime = 0;
       cardState = STATE.NEW;
@@ -48,11 +59,19 @@
       startTime = Date.now();
       cardState = STATE.RUNNING;
     };
-    
+
+    // Function to handle changes in isActive prop
+    $: {
+      if (isActive) {
+        start();
+      } else {
+        pause();
+      }
+    }
 </script>
 
 <!--div class="glass w-1/3 h-36 p-4"-->
-<div class="glass col-span-1">
+<div class="glass col-span-1 px-1">
     <h1 class="mb-2 text-2xl text-yellow-100 border-b border-white">
     {title}
     </h1>
