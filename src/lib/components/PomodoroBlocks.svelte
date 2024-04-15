@@ -68,7 +68,15 @@
       timerType = timerType === "study" ? "rest" : "study";
     }
   </script>
-  
+
+  <div class="controls">
+    {@render Input()}
+    <button on:click={submit}>Add new block</button>
+    <button class="clear" on:click={clear}>
+      {@render CleanupIcon()}
+    </button>
+  </div>
+
   <div class="card-list">
     <ul>
       {#each cards as card (card.id)}
@@ -77,13 +85,6 @@
       </div>
       {/each}
     </ul>
-  
-    <div class="controls">
-      {@render Input()}
-      <button class="clear" on:click={clear}>
-        {@render CleanupIcon()}
-      </button>
-    </div>
   </div>
   
   {#snippet CardItem(card)}
