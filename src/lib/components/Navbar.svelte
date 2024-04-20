@@ -33,8 +33,8 @@
                         <div class="flex space-x-4">
                             <a href="/" class="{($page.url.pathname === '/') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
                             <a href="/about" class="{($page.url.pathname === '/about') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
-                            <a href="/guides" class="{($page.url.pathname === '/guides') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Guides</a>
-                            <a href="/study" class="{($page.url.pathname === '/guides') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Study</a>
+                            <!--a href="/guides" class="{($page.url.pathname === '/guides') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Guides</a-->
+                            <a href="/study" class="{($page.url.pathname === '/study') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Study</a>
                         </div>
                     </div>
                 </div>
