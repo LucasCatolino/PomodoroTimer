@@ -13,7 +13,7 @@
 <div data-theme={ theme }>
     <Navbar bind:theme/>
     
-    <main>
+    <main class="bg-gradient-to-br from-blue-500 to-green-400">
         <!-- page content -->
         <slot></slot>
     </main>

@@ -5,7 +5,7 @@
 </script>
 
 <div
-    class="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-500 to-green-400"
+    class="flex flex-col items-center justify-center h-screen "
   >
 
   <PomodoroBlocks />
