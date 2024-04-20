@@ -103,7 +103,7 @@
   {#snippet CardItem(card)}
   <div class:done={card.done}>
     <li>
-      <button on:click={() => onClick(card)}>
+      <button>
         {card.title} {card.id} - {card.done ? "Done" : "Not done"}
       </button>
     </li>
@@ -161,9 +161,9 @@
   {#snippet resumeStudyButton()}
     {#if start}
       <button
-        class="bg-red-600 text-xl font-bold rounded-lg px-5 py-2 me-2 mb-2"
+        class="bg-orange-600 text-xl font-bold rounded-lg px-5 py-2 me-2 mb-2"
         on:click={stopTimer}
-      >Stop</button>
+      >Pause</button>
     {:else}
       <button
         class="bg-green-600 text-xl font-bold rounded-lg px-5 py-2 me-2 mb-2"
