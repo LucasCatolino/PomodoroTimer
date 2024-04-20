@@ -47,11 +47,7 @@
       newStudyCardTime = 0;
       newRestCardTime = 0;
     }
-  
-    function onClick(card: CardItem) {
-        card.done = !card.done
-    }
-  
+
     function clear() {
       cards = cards.filter((card) => !card.done)
     }
@@ -79,6 +75,10 @@
       console.log("Stop timer");
     }
 
+    function eraseCard(card: CardItem) {
+      card.done = !card.done
+    }
+
   </script>
 
   <div class="controls">
@@ -103,7 +103,7 @@
   {#snippet CardItem(card)}
   <div class:done={card.done}>
     <li>
-      <button>
+      <button on:click={() => eraseCard(card)}>
         {card.title} {card.id} - {card.done ? "Done" : "Not done"}
       </button>
     </li>
