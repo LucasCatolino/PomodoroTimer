@@ -1,14 +1,10 @@
 <script>
     import PomodoroBlocks from "$lib/components/PomodoroBlocks.svelte";
-    const STUDY = "Study time";
-    const REST = "Rest time";
 </script>
 
-<div
-    class="flex flex-col items-center justify-center h-screen "
-  >
+<div class="flex flex-col items-center justify-center h-screen ">
 
-  <PomodoroBlocks />
+  <PomodoroBlocks/>
 
 </div>
   
