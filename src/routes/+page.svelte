@@ -7,7 +7,7 @@
 </script>
 
 <div class="index min-h-screen flex flex-col justify-center items-center">
-    <div class=" p-6 rounded">
+    <div class="p-6 rounded">
         <h1 class="text-3xl font-bold text-gray-800 mb-4">Pomodoro Technique</h1>
         <p class="mb-4">The Pomodoro Technique is named after the tomato-shaped kitchen timer that its creator, Francesco Cirillo, used during his university years. "Pomodoro" is the Italian word for "tomato."</p>
         <p class="mb-4">Francesco Cirillo developed this time management method in the late 1980s when he was a university student. He used a mechanical kitchen timer shaped like a tomato to break his work into focused intervals. These intervals, known as "Pomodoros," were typically 25 minutes long. After each Pomodoro, he would take a short break. This technique helped him improve his productivity and manage distractions effectively.</p>
@@ -53,16 +53,5 @@
     ul {
         list-style-type: none;
         padding: 0;
-    }
-
-    /* Custom bullet point for tomatoes */
-    .list-tomatoes {
-            list-style-type: none;
-            padding-left: 0;
-        }
-    .list-tomatoes li::before {
-        content: "🍅"; /* Unicode tomato character */
-        display: inline-block;
-        margin-right: 8px;
     }
 </style>

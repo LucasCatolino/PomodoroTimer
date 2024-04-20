@@ -18,3 +18,14 @@ input {
   @apply bg-background text-foreground;
   @apply px-4 py-2;
 }
+
+/* Custom bullet point for tomatoes */
+.list-tomatoes {
+  list-style-type: none;
+  padding-left: 0;
+}
+.list-tomatoes li::before {
+content: "🍅"; /* Unicode tomato character */
+display: inline-block;
+margin-right: 8px;
+}
