@@ -14,6 +14,7 @@
     let newRestCardTime = $state(0);
     let currentId = $state(1);
     let lastId = $state(2);
+    let start = $state(false);
 
     let cards = $state([
       {
@@ -67,6 +68,17 @@
       }
       timerType = timerType === "study" ? "rest" : "study";
     }
+
+    function startTimer() {
+      start = true;
+      console.log("Start timer");
+    }
+
+    function stopTimer() {
+      start = false;
+      console.log("Stop timer");
+    }
+
   </script>
 
   <div class="controls">
@@ -75,6 +87,7 @@
     <button class="clear" on:click={clear}>
       {@render CleanupIcon()}
     </button>
+    {@render resumeStudyButton()}
   </div>
 
   <div class="card-list">
@@ -95,9 +108,9 @@
       </button>
     </li>
     <div class="grid grid-cols-2 gap-4 py-2">
-      <StudyCard title={STUDY} cardTime={card.studyTime} isActive={timerType === "study" && card.id === currentId}
+      <StudyCard title={STUDY} cardTime={card.studyTime} isActive={timerType === "study" && start && card.id === currentId}
         on:cardDone={changeTimerType} id={card.id}/>
-      <StudyCard title={REST} cardTime={card.restTime} isActive={timerType === "rest" && card.id === currentId}
+      <StudyCard title={REST} cardTime={card.restTime} isActive={timerType === "rest" && start && card.id === currentId}
         on:cardDone={changeTimerType} id={card.id}/>
     </div>
   </div>
@@ -143,6 +156,20 @@
         d="M8 6h12M6 12h12M4 18h12"
       />
     </svg>
+  {/snippet}
+
+  {#snippet resumeStudyButton()}
+    {#if start}
+      <button
+        class="bg-red-600 text-xl font-bold rounded-lg px-5 py-2 me-2 mb-2"
+        on:click={stopTimer}
+      >Stop</button>
+    {:else}
+      <button
+        class="bg-green-600 text-xl font-bold rounded-lg px-5 py-2 me-2 mb-2"
+        on:click={startTimer}
+      >Start</button>
+    {/if}
   {/snippet}
   
   <style lang="postcss">
