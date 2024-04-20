@@ -1,8 +1,10 @@
 <!-- reference: https://github.com/codyseibert/youtube/tree/master/svelte-stop-watch-->
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
+    import { onMount } from 'svelte';
 
     const dispatch = createEventDispatcher();
+    const URL: string = 'https://www.soundjay.com/misc/sounds/bell-ringing-04.mp3';
 
     enum STATE {
       NEW,
@@ -15,12 +17,13 @@
     let elaspedTime: number = 0;
     let oldElapsedTime: number = 0;
     let interval: number;
+    let audio: HTMLAudioElement;
 
     export let title: string;
     export let cardTime: number;
     export let isActive: boolean;
     export let id: number;
-    
+
     const pad2 = (number: number) => `00${number}`.slice(-2);
   
     $: minutes = pad2((cardTime - 1) - Math.floor(elaspedTime / 1000 / 60) % 60);
@@ -38,17 +41,23 @@
           if(formattedRemainingTime == "00:00") {
             clearInterval(interval);
             cardState = STATE.PAUSED;
+            audio.play();
             dispatch('cardDone'); // Emit event when timer reaches 0
           }
         });
     };
-    
   
     const pause = () => {
       cardState = STATE.PAUSED;
       oldElapsedTime = elaspedTime;
     };
-  
+
+    onMount(() => {
+      // Check if running in the browser environment
+      if (typeof window !== 'undefined') {
+        audio = new Audio(URL); // Path to your audio file
+      }
+    });
 
     // Function to handle changes in isActive prop
     $: {
@@ -58,6 +67,7 @@
         pause();
       }
     }
+
 </script>
 
 <div class="glass col-span-1 px-1">
