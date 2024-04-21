@@ -27,7 +27,7 @@
     const pad2 = (number: number) => `00${number}`.slice(-2);
   
     $: minutes = pad2((cardTime - 1) - Math.floor(elaspedTime / 1000 / 60) % 60);
-    $: seconds = pad2(59 - Math.floor(elaspedTime / 1000) % 6);
+    $: seconds = pad2(3 - Math.floor(elaspedTime / 1000) % 6);
     $: formattedRemainingTime = `${minutes}:${seconds}`;
 
     const start = () => {
@@ -38,7 +38,7 @@
             const endTime = Date.now();
             elaspedTime = endTime - startTime + oldElapsedTime;
           }
-          if(formattedRemainingTime == "00:00") {
+          if(formattedRemainingTime === "00:00" && cardState === STATE.RUNNING) {
             clearInterval(interval);
             cardState = STATE.PAUSED;
             audio.play();

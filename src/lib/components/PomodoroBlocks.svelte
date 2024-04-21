@@ -7,7 +7,7 @@
     const STUDY = "Study time";
     const REST = "Rest time";
   
-    type CardItem = { id: number; title: string; studyTime: number; restTime: number; done?: boolean }
+    type CardItem = { id: number; title: string; studyTime: number; restTime: number; done?: boolean; erase: boolean}
    
     let { data } = $props();
     let { cards } = $state(data as Cards[]); //recieves the cards from the parent
@@ -22,7 +22,6 @@
         lastId = cards.length;
     });
 
-
     let timerType = $state("study");
 
     function submit() {
@@ -31,14 +30,22 @@
       cards.push({
           id: createId(), studyTime: newStudyCardTime, restTime: newRestCardTime,
           title: "Pomodoro block",
-          done: false
+          done: false,
+          erase: false
       })
       newStudyCardTime = 0;
       newRestCardTime = 0;
     }
 
     function clear() {
-      cards = cards.filter((card: Cards) => !card.done)
+      //cards = cards.filter((card: Cards) => !card.done)
+
+      cards = cards.map((card: Cards) => {
+        card.erase = card.done;
+        return card;
+      })
+      currentId = 1;
+      timerType = "study";
     }
     
     function createId() {
@@ -46,22 +53,38 @@
       return lastId;
     }
 
+    function checkNextCurrentId() {
+      if (currentId >= cards.length) {
+        currentId = currentId + 1;
+        stopTimer();
+      }
+      while (cards[currentId - 1].done && currentId < cards.length) {
+        currentId = currentId + 1;
+      }
+    }
+
     function changeTimerType() {
       if (timerType === "rest") {
         cards[currentId - 1].done = true;
-        currentId = currentId + 1;
+        //currentId = currentId + 1;
+        checkNextCurrentId();
       }
       timerType = timerType === "study" ? "rest" : "study";
     }
 
     function startTimer() {
-      start = true;
-      console.log("Start timer");
+      if (!cards[currentId - 1].done) {
+        start = true;
+      } else {
+        checkNextCurrentId();
+        if (currentId <= cards.length) {
+          start = true;
+        }
+      }
     }
 
     function stopTimer() {
       start = false;
-      console.log("Stop timer");
     }
 
     function eraseCard(card: CardItem) {
@@ -82,9 +105,11 @@
   <div class="card-list">
     <ul>
       {#each cards as card (card.id)}
+      {#if !card.erase}
       <div out:fly={{ x: 200, duration: 1000 }} in:fly={{ y: 1000, duration: 1000 }}>
         {@render CardItem(card) }
       </div>
+      {/if}
       {/each}
     </ul>
   </div>

@@ -10,6 +10,7 @@ export async function GET() {
             studyTime: STUDY_TIME,
             restTime: REST_TIME,
             done: false,
+            erase: false
         },
         {
             id: 2,
@@ -17,6 +18,7 @@ export async function GET() {
             studyTime: STUDY_TIME,
             restTime: REST_TIME,
             done: false,
+            erase: false
         },
         {
             id: 3,
@@ -24,6 +26,7 @@ export async function GET() {
             studyTime: STUDY_TIME,
             restTime: REST_TIME,
             done: false,
+            erase: false
         },
         {
             id: 4,
@@ -31,6 +34,7 @@ export async function GET() {
             studyTime: STUDY_TIME,
             restTime: REST_TIME,
             done: false,
+            erase: false
         }
     ]
 

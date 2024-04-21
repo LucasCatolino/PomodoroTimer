@@ -9,7 +9,7 @@ export const load: PageServerLoad = async (event) => {
     }
 }
 
-export type Cards = {id: number, title: string, studyTime: number, restTime: number, done: boolean};
+export type Cards = {id: number, title: string, studyTime: number, restTime: number, done: boolean, erase: boolean};
 
 async function fetchCards(event: ServerLoadEvent) {
     const res = await event.fetch('/study');
