@@ -1,40 +1,29 @@
 <script lang="ts">
     import { fly } from "svelte/transition"
     import StudyCard from "./StudyCard.svelte";
+    import type { Cards } from "../../routes/study/+page.server";
+    import { onMount } from 'svelte';
 
     const STUDY = "Study time";
     const REST = "Rest time";
-
-    const STUDY_TIME: number = 1;
-    const REST_TIME: number = 1;
   
     type CardItem = { id: number; title: string; studyTime: number; restTime: number; done?: boolean }
+   
+    let { data } = $props();
+    let { cards } = $state(data as Cards[]); //recieves the cards from the parent
   
     let newStudyCardTime = $state(0);
     let newRestCardTime = $state(0);
     let currentId = $state(1);
-    let lastId = $state(2);
+    let lastId = $state(0);
     let start = $state(false);
 
-    let cards = $state([
-      {
-        id: 1,
-        title: "Pomodoro block",
-        studyTime: STUDY_TIME,
-        restTime: REST_TIME,
-        done: false,
-      },
-      {
-        id: 2,
-        title: "Pomodoro block",
-        studyTime: STUDY_TIME,
-        restTime: REST_TIME,
-        done: false,
-      },
-    ]);
+    onMount(() => {
+        lastId = cards.length;
+    });
 
-    // Internal state variable to track which timer to start
-    let timerType = $state("study"); // Initially set to study
+
+    let timerType = $state("study");
 
     function submit() {
       if (!newStudyCardTime && !newRestCardTime) return
@@ -49,7 +38,7 @@
     }
 
     function clear() {
-      cards = cards.filter((card) => !card.done)
+      cards = cards.filter((card: Cards) => !card.done)
     }
     
     function createId() {

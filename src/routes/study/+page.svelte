@@ -1,10 +1,14 @@
 <script>
-    import PomodoroBlocks from "$lib/components/PomodoroBlocks.svelte";
+  import PomodoroBlocks from "$lib/components/PomodoroBlocks.svelte";
+  import { writable } from 'svelte/store';
+
+  let { data } = $props();
+  const cards = writable(data);
 </script>
 
 <div class="flex flex-col items-center justify-center h-screen ">
 
-  <PomodoroBlocks/>
+  <PomodoroBlocks data={$cards}/>
 
 </div>
   
