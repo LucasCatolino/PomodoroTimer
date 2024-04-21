@@ -27,7 +27,7 @@
     const pad2 = (number: number) => `00${number}`.slice(-2);
   
     $: minutes = pad2((cardTime - 1) - Math.floor(elaspedTime / 1000 / 60) % 60);
-    $: seconds = pad2(5 - Math.floor(elaspedTime / 1000) % 6); //TODO: CAMBIAR A 59
+    $: seconds = pad2(59 - Math.floor(elaspedTime / 1000) % 6);
     $: formattedRemainingTime = `${minutes}:${seconds}`;
 
     const start = () => {
