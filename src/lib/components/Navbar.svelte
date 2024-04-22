@@ -33,7 +33,6 @@
                         <div class="flex space-x-4">
                             <a href="/" class="{($page.url.pathname === '/') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
                             <a href="/about" class="{($page.url.pathname === '/about') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
-                            <!--a href="/guides" class="{($page.url.pathname === '/guides') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Guides</a-->
                             <a href="/study" class="{($page.url.pathname === '/study') ? 'bg-gray-900 text-white' : ''} hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Study</a>
                         </div>
                     </div>
@@ -48,12 +47,12 @@
                         <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{ getIcon() }</span>
                     </label>
                 </div>
-                <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <a href="/login" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 0a4 4 0 110-8 4 4 0 010 8z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-1a4 4 0 00-4-4H8a4 4 0 00-4 4v1" />
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
     </div>
