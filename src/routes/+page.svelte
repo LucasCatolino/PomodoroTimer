@@ -1,5 +1,5 @@
 <script>
-
+  import { goto } from '$app/navigation';
 </script>
 
 <div class="index min-h-screen flex flex-col justify-center items-center">
@@ -20,7 +20,7 @@
             <li>After completing four Pomodoros, take a longer break (about 15-30 minutes).</li>
         </ul>
         <div class="mb-5">
-            <a class="bg-green-600 text-xl font-bold rounded-lg px-5 py-2 me-2" href="/study">Let's go!</a>
+            <button class="bg-green-600 text-xl font-bold rounded-lg px-5 py-2 me-2" on:click={() => goto('/study')}>Let's go!</button>
         </div>
         <h2 class="text-2xl font-semibold text-gray-800 mb-2">Benefits</h2>
         <ul class="list-disc pl-6 list-tomatoes">
