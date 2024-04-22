@@ -26,7 +26,9 @@
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
                         <a href="/">
-                            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                            <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <image href="tomato.svg" height="24" width="24" />
+                            </svg>
                         </a>
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
