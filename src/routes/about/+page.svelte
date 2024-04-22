@@ -15,6 +15,8 @@
                 <li>Shows routing and navigation in a SvelteKit app.</li>
                 <li>Includes responsive design using Tailwind CSS.</li>
                 <li>Includes two different themes.</li>
+                <li>Uses client-side state management using $state .</li>
+                <li>Includes a login page with a session cookie.</li>
             </ul>
             <p>I hope that this project serves as a valuable resource for anyone learning about SvelteKit and modern frontend frameworks.</p>
             <p class="mb-3">Thank you for visiting!</p>
