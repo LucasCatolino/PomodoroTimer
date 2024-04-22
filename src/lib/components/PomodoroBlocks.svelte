@@ -102,7 +102,7 @@
     {@render resumeStudyButton()}
   </div>
 
-  <div class="card-list">
+  <div class="card-list min-h-screen">
     <ul>
       {#each cards as card (card.id)}
       {#if !card.erase}
