@@ -1,38 +1,63 @@
-# create-svelte
+# Pomodoro timer
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This is a simple SvelteKit implementing a Pomodoro timer. The idea of the project is to create a simple app to demonstrate the usage of SvelteKit, implementing different pages, routers, server and client side, a login with a session cookie, custom themes and a call to an external API.
 
-## Creating a project
+## Prerequisites
 
-If you're seeing this, you've probably already done this step. Congrats!
+Before running the app, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v14 or later)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [Git](https://git-scm.com/)
+
+## Getting Started
+
+Follow these steps to get the app up and running:
+
+### 1. Clone the Repository
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+git https://github.com/LucasCatolino/PomodoroTimer
+cd PomodoroTimer
 ```
 
-## Developing
+### 2. Install Dependencies
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+npm install
+```
+
+### 3. Run the Development Server
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+The app will be running at [http://localhost:3000](http://localhost:5173). You can view it in your browser.
 
-To create a production version of your app:
+### 4. Build and Serve (for Production)
+
+To build the app for production and serve it:
 
 ```bash
 npm run build
+npm run start
 ```
 
-You can preview the production build with `npm run preview`.
+The app will be built and served at [http://localhost:3000](http://localhost:5173).
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Additional Scripts
+
+- `npm run dev`: Starts the development server.
+- `npm run build`: Builds the app for production.
+- `npm run start`: Serves the built app for production.
+
+## Folder Structure
+
+- `/src`: Contains the source code for the app.
+- `/public`: Contains static assets like images, fonts, etc.
+- `/static`: Contains files served at root URL.
+
+## Contributing
+
+Feel free to use this project as inspiration, and if you feel like it give it a star.
