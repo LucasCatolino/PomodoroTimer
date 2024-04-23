@@ -6,7 +6,7 @@
   const cards = writable(data);
 </script>
 
-<div class="study min-h-28 h-fit flex flex-col items-center justify-center h-screen mt-5">
+<div class="study h-fit flex flex-col items-center justify-center h-screen mt-10">
 
   <PomodoroBlocks data={$cards}/>
 

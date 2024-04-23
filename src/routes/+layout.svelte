@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Title from "$lib/title.svelte";
     import '../styles/global.css';
     import Navbar from '$lib/components/Navbar.svelte';
     import Footer from "$lib/components/Footer.svelte";
@@ -10,10 +9,10 @@
     let theme = $state("dark" as Theme)
 </script>
 
-<div data-theme={ theme }>
+<div data-theme={ theme } class="flex flex-col min-h-screen">
     <Navbar bind:theme/>
     
-    <main class="bg-gradient-to-br from-blue-500 to-green-400">
+    <main class="body bg-gradient-to-br from-blue-500 to-green-400 h-fit">
         <!-- page content -->
         <slot></slot>
     </main>
@@ -38,34 +37,4 @@
       @apply drop-shadow-md;
       @apply flex flex-row items-center;
     }
-  </style>
-<!--style>
-    header {
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    main {
-        max-width: 960px;
-        margin: 20px auto;
-    }
-
-    footer {
-        text-align: center;
-    }
-
-    .links {
-        margin-left: auto;
-    }
-
-    a {
-        margin-left: 10px;
-    }
-
-    nav {
-        display: flex;
-        align-items: center;
-        max-width: 960px;
-        margin: 0 auto;
-    }
-</style-->
+</style>
